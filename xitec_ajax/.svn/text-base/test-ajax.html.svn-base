@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>X-ITEC GUI-Technology Preview #1</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #5e7acd;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+.tr_tabellenkopf 
+{
+	color: #164eba;
+	background-color: #FFFFFF;
+	padding: 4px;
+	font-size: small;
+}
+
+.tr_tabellencontent 
+{
+	color: #164eba;
+	background-color: #e0e7f8;
+	padding: 4px;
+}
+fieldset {
+}
+legend {
+	font-weight: bold;
+	font-size: small;
+	color: #000000;
+}
+
+-->
+</style>
+</head>
+
+<body>
+<script language="JavaScript" type="text/javascript" src="cms.js"></script>
+<script language="javascript" type="text/javascript">
+function austauschen()
+{
+var ajax= new class_ajax();
+var form = new class_form();
+var daten=ajax.getdata('ajax-server.php',false,'x=123');
+ajax.replacedata("Inhalt",daten);
+}
+
+function verstecken()
+{
+var c=new class_compat();
+c.hide("Inhalt");
+}
+
+function anzeigen()
+{
+var c=new class_compat();
+c.show("Inhalt");
+}
+
+
+function eingabecheck()
+{
+var c=new class_compat()
+var feld1=c.getelement_id("eingabe");
+var feld2=c.getelement_id("unsichtbar");
+feld1=feld1.value;
+feld2=feld2.value;
+alert("Feld1: "+feld1);
+alert("Hidden-Var: "+feld2);
+
+}
+
+function eingabeaus()
+{
+var c=new class_compat()
+c.disable("eingabe");return false;
+}
+
+function eingabean()
+{
+var c=new class_compat()
+c.enable("eingabe");return false;
+}
+
+function eingabetoggle()
+{
+var c=new class_compat()
+c.enadisa("eingabe");return false;
+}
+
+function layergruppe_zeigen(f_reihe)
+{
+var c=new class_compat()
+c.showgroupelement("tabelle","zeile"+f_reihe);
+}
+
+function setze_posbox(src,target,offx,offy)
+{
+var c=new class_compat()
+dout("Setze Posbox an "+src+" Quelle: "+target);
+c.node2node(src,target,offx,offy);
+}
+
+function setze_posboxb(src,target,offx,offy)
+{
+var c=new class_compat()
+dout("Setze Posbox an "+src+" Quelle: "+target);
+c.node2nodeb(src,target,offx,offy);
+}
+
+
+function setze_posboxt(src,target,offx,offy)
+{
+var c=new class_compat()
+dout("Setze Posbox an "+src+" Quelle: "+target);
+c.node2nodet(src,target,offx,offy);
+//c.transparency(src,50);
+
+
+}
+
+function hide(el)
+{
+var c=new class_compat()
+c.hide(el);
+}
+function show(el)
+{
+var c=new class_compat()
+c.show(el);
+}
+
+
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td class="tr_tabellenkopf">Ajax Technologie <a href="javascript:austauschen()">Inhalt in Echtzeit laden</a> <a href="javascript:verstecken()">Inhalt ausblenden</a> <a href="javascript:anzeigen()">Inhalt einblenden </a> Informationen live   übertragen und empfangen!</td>
+  </tr>
+  <tr>
+    <td class="tr_tabellencontent"><div id="Inhalt"> Tausch mich aus! </div></td>
+  </tr>
+</table>
+<br />
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+  <tr class="tr_tabellenkopf">
+    <td>Eingabefelder</td>
+  </tr>
+  <tr class="tr_tabellencontent">
+    <td><form id="form1" name="form1" method="post" action="">
+      <input name="eingabe" type="text" id="eingabe" value="99" />
+      <input name="unsichtbar" type="hidden" id="unsichtbar" value="77" />
+      <input type="button" class="automove" name="Button" value="Inhalt anzeigen/pr&uuml;fen" onclick="javascript:eingabecheck()" />
+      <input type="button" class="automove" name="Submit2" value="Eingabe abschalten" onclick="javascript:eingabeaus()" />
+      <input type="button" class="automove" name="Submit22" value="Eingabe einschalten" onclick="javascript:eingabean()" />
+      <input type="button" class="automove" name="Submit222" value="Eingabe ein/aus " onclick="javascript:eingabetoggle()" />
+    </form></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<br />
+<table width="100%" border="0" cellpadding="5" cellspacing="0" bordercolor="#000000">
+  <tr>
+    <td valign="top" class="tr_tabellenkopf">Layergruppen die zusammengeh&ouml;ren bequem einblenden: <a href="javascript:layergruppe_zeigen('1')">Gruppe1</a> <a href="javascript:layergruppe_zeigen('2')">Gruppe2</a> <a href="javascript:layergruppe_zeigen('3')">Gruppe3</a> </td>
+  </tr>
+  
+<tr  >
+    <td  valign="top" class="tr_tabellencontent" > <div id="tabelle_zeile1" style="visibility:hidden;display:none"> Info 1 - lkjasfjasjfasfsafhj </div><div id="tabelle_zeile2" style="visibility:hidden;display:none">Info 2 -  aklsfhjkasfjasjfasjkfajsd </div><div id="tabelle_zeile3" style="visibility:hidden;display:none"> Info 3 -  aklsfhkasfkaslfhk </div>
+</td> 
+  </tr>
+ 
+
+</table>
+
+<br />
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="5" id="automove_99">
+  <tr>
+    <td class="tr_tabellenkopf"  >Tabmen&uuml; ohne Programmierung! Einfach eine Tabelle machen, der Rest geht von allein. </td>
+  </tr>
+  <tr>
+    <td class="tr_tabellencontent"><table  width="100%" height="0" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" class="tabpanel_1" id="tabpanel_1">
+      <tr>
+        <td valign="top"><div align="center">Tabseite1</div></td>
+        <td valign="top"><div align="center">Tabseite2</div></td>
+        <td valign="top"><div align="center">Tabseite3</div></td>
+        <td valign="top">Quellcode</td>
+      </tr>
+      <tr>
+        <td height="0" colspan="4" valign="top">t1<br />
+          2<br />
+          3</td>
+      </tr>
+      <tr>
+        <td colspan="4" valign="top">t2<br />
+          2<br />
+          3<br />
+          4<br />
+          5</td>
+      </tr>
+      <tr>
+        <td colspan="4" valign="top">t3<br />
+          2<br />
+          3<br />
+          4<br />
+          5</td>
+      </tr>
+      <tr>
+        <td colspan="4" valign="top">Dieses Tabmen&uuml; erstellt man einfach so, ohne eine Zeile Programmcode. Erste Zeile ist der Kopf, die anderen Zeilen die Tab-Pages.  <br />
+          <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
+            <tr>
+              <td>Tab1</td>
+              <td>Tab2</td>
+              <td>Tab3</td>
+              <td>Tab4</td>
+            </tr>
+            <tr>
+              <td colspan="4">Inhalt1</td>
+            </tr>
+            <tr>
+              <td colspan="4">Inhalt2</td>
+            </tr>
+            <tr>
+              <td colspan="4">Inhalt3</td>
+            </tr>
+            <tr>
+              <td colspan="4">Inhalt4</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  
+  <tr>
+    <td colspan="3" class="tr_tabellenkopf">Borderstyle f&uuml;r Seitenelemente </td>
+  </tr>
+  <tr>
+    <td width="36%" class="tr_tabellencontent">
+<fieldset style="padding:6px;"><legend>Ich bin eine Kopfzeile</legend>
+Das ist ein Informationstext
+</fieldset></td>
+    <td width="22%" class="tr_tabellencontent">&nbsp;</td>
+    <td width="42%" class="tr_tabellencontent">
+<fieldset style="padding:6px;">
+<legend>Ich bin noch eine Kopfzeile</legend>
+Das ist ein Informationstext
+</fieldset>
+
+</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="tr_tabellencontent">
+
+
+
+</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" class="tr_tabellenkopf">Eingabefelder mit automatischem Hilfetext an beliebiger Position; keine Programmierung n&ouml;tig!  </td>
+  </tr>
+  <tr>
+    <td width="56%" valign="top" class="tr_tabellencontent"><br />
+      Name:<br />
+      <input name="textarea" id="gui_name_automove" type="text" value="" help_in="Geben Sie jetzt einen Namen ein" help_out="" />
+      [ <a href="#" help_in="Jedes Element, zB dieser Link kann Hilfetexte beinhalten. Dies wäre nochmal eine Sonderinformation. ">?</a> ] 
+      <br />
+    Strasse:<br />
+    <input name="textarea2" id="gui_strasse" type="text" value="" help_in="Strasse eingeben"  />
+    <span class="automove" id="egal" help_in="Hilfetexte sind überall möglich, auch bei normalem Text - ohne Link, Scripts und Co." help_out="Sie haben aber schnell gelesen! Texte wenn man einen Bereich verlässt, sind ebenfalls möglich! ">  LiesMich </span><br />
+    PLZ:<br />
+    <input name="textarea3" id="gui_plz" type="text" value="" help_in="PLZ eingeben" />
+    <br />
+    Ort: <br />
+    <input name="textarea4" id="gui_ort" type="text" value="" help_in="Ort eingeben"/>
+    <br /></td>
+    <td width="44%" valign="top" class="tr_tabellencontent">
+<fieldset  style="padding:6px;"><legend>Hilfe</legend>
+<p><div id="guihelp"> Hier erscheint völlig automatisch der Hilfetext </div> <br />
+</p>
+</fieldset></td>
+  </tr>
+</table>
+<br />
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr_tabellenkopf">
+    <td>Tablesort; ebenfalls in Echtzeit ohne Programmierung </td>
+  </tr>
+  <tr class="tr_tabellencontent">
+    <td><table width="100%" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" id="tabelle_sortable">
+      <tr>
+        <td>Name</td>
+        <td>Strasse</td>
+        <td>PLZ</td>
+        <td>Ort</td>
+      </tr>
+      <tr>
+        <td>Boris</td>
+        <td>Meine Strasse </td>
+        <td>Meine PLZ </td>
+        <td>Mein Ort </td>
+      </tr>
+      <tr>
+        <td>Noch ein Name </td>
+        <td>Alpha Bravo Charlie </td>
+        <td>Delta</td>
+        <td>Echo</td>
+      </tr>
+      <tr>
+        <td>Alpha Joe </td>
+        <td>Centauri Beta </td>
+        <td>John</td>
+        <td>Doe</td>
+      </tr>
+      <tr>
+        <td>Toni</td>
+        <td>Mahonistrasse</td>
+        <td>SuperPLZ</td>
+        <td>Zauberstadt</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr_tabellenkopf">
+    <td>Elemente automatisch zu anderen Elementen positionieren. Problemlos DropDown-Men&uuml;s darstellen. </td>
+  </tr>
+  <tr class="tr_tabellencontent">
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td width="33%" valign="top"><a href="javascript:setze_posbox('posbox','posbox_klickmich',10,30)" id="posbox_klickmich">Klick mich! <br />
+            
+          </a></td>
+          <td width="33%" valign="top"><a href="#"  onmouseover="javascript:setze_posbox('posbox','posbox_klickmich2',10,30)" id="posbox_klickmich2">Maus &uuml;ber dem Link! </a></td>
+          <td width="33%" valign="top"><a href="javascript:setze_posbox('posbox','posbox_klickmich3',0,0)" id="posbox_klickmich3">Direkt an meiner Position </a></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;</td>
+          <td valign="top" ><br />
+            <br />
+            <br />
+            <br />
+            <br />
+          <br /></td>
+          <td valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td valign="top"><a id="posbox_klickmich5" href="javascript:setze_posboxb('posbox2','posbox_klickmich5',0,0)">Hier ist die Box immer pr&auml;zise unter dem Element weil die H&ouml;he pixelgenau berechnet wird </a></td>
+          <td valign="top" ><a id="posbox_klickmich6" href="javascript:setze_posboxt('posbox2','posbox_klickmich6',0,0)">Hier ist die Box immer pr&auml;zise &uuml;ber dem Element weil die H&ouml;he pixelgenau berechnet wird </a></td>
+          <td valign="top">&nbsp;</td>
+        </tr>
+      </table>
+      <p><br />
+        <br />
+        <br />
+      </p>
+      <table width="217" border="1" align="left" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" id="posbox" onmouseout="javascript:hide('posbox');">
+        <tr>
+          <td valign="top"> Ich  positioniere mich automatisch an ein beliebiges, gew&uuml;nschtes Element. Die Mausposition ist hierbei egal, ebenso Gr&ouml;&szlig;e und Art des Elements. Tabelle, Link, Text... ich verschwinde wieder, man meinen Bereich mit der Maus verl&auml;sst. </td>
+        </tr>
+        <tr>
+          <td>LINK 1 </td>
+        </tr>
+        <tr>
+          <td>LINK 2 </td>
+        </tr>
+      </table>
+      <table width="28%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" id="posbox2">
+        <tr>
+          <td>Ich werde pixelgenau &uuml;ber oder unter einem beliebigen Element positioniert, v&ouml;llig automatisch und k&ouml;nnte ein DropDown Men&uuml; sein. Ich m&ouml;chte sichtbar bleiben. </td>
+        </tr>
+        <tr>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>B</td>
+        </tr>
+        <tr>
+          <td>C</td>
+        </tr>
+      </table>
+      <p><br />
+        <br />
+      </p>
+      <p><br />
+    </p></td>
+  </tr>
+</table>
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr_tabellenkopf">
+    <td>Eigene Fenster ohne Programmierung erstellbar. Das Beispiel ist eine Tabelle, k&ouml;nnte aber auch ein richtiges Designerfenster sein. </td>
+  </tr>
+  <tr class="tr_tabellencontent">
+    <td><br />
+      <br />
+    <br /> <div class="automove" id="moveme" style=" padding-top:15px; padding-left:15px; width:300px;height:110px ">
+    <table id="fenster1" width="95%" border="1" cellpadding="5" cellspacing="0">
+      <tr >
+        <td  width="85%" valign="top" bgcolor="#ECE9D8">Fenstertitel</td>
+        <td width="15%" bgcolor="#FFFF00"> <div align="right">[ <a href="javascript:hide('fenster1');">X</a> ] </div></td>
+      </tr>
+      <tr>
+        <td height="48" colspan="2" bgcolor="#FFFFFF">Fensterinhalt<br /></td>
+      </tr>
+    </table></div>
+    <p><br />
+        <br />
+      <br />
+      </p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p><br />
+        <br />
+    </p></td>
+  </tr>
+</table>
+<br />
+<br />
+<br />
+<br />
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr_tabellenkopf">
+    <td>Debug-Console; wird automatisch gef&uuml;llt wenn vorhanden um zu sehen, ob es irgendwo Probleme gibt. </td>
+  </tr>
+  <tr class="tr_tabellencontent">
+    <td><textarea name="debugoutput" class="automove" cols="80" rows="50" id="debugoutput">Debug-Console enabled.
+</textarea></td>
+  </tr>
+</table>
+<br />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr_tabellenkopf">
+    <td>Vielen Dank </td>
+  </tr>
+  <tr class="tr_tabellencontent">
+    <td><br />
+    ...dass Sie sich unsere TechDemo angesehen haben. Es handelt sich um eine Javascript-Library, die nicht von Stylesheet-Vorgaben oder &auml;hnlichem abh&auml;ngig ist und unter IE 6, Opera sowie Firefox funktioniert. <br />
+    <br />
+    Kaufen Sie unsere Library jetzt f&uuml;r Ihre Internetprojekte  unter www.x-itec.net <br /></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="tr_tabellenkopf">So erzeugt man das dynamische Tabmen&uuml; mit Ihrem HTML Editor </td>
+  </tr>
+  <tr>
+    <td width="56%" valign="top" class="tr_tabellencontent"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="tabpanel_33" class="tabpanel_33">
+      <tr>
+        <td>Tab 01 </td>
+        <td>Tab 02 </td>
+        <td>Tab 03 </td>
+        <td>Tab 04 </td>
+      </tr>
+      <tr>
+        <td colspan="4">Ich bin Seite 1 </td>
+        </tr>
+      <tr>
+        <td colspan="4">Ich bin Seite 2 </td>
+      </tr>
+      <tr>
+        <td colspan="4">Ich bin Seite 3 </td>
+      </tr>
+      <tr>
+        <td colspan="4">Ich bin Seite 4 </td>
+      </tr>
+    </table>
+      <br />
+      <br />
+      Das war's schon. Keine Programmierung notwendig. </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+
+</html>
